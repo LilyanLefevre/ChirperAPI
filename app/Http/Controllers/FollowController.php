@@ -43,6 +43,14 @@ class FollowController extends Controller
             'followed_id' => ['required', 'string', 'exists:users,id']
         ]);
 
+        $existing_follow = Follow::query()->where('follower_id', '=', $validated['follower_id'])
+            ->where('followed_id', '=', $validated['followed_id'])->first();
+
+        if(!empty($existing_follow)){
+            return response()->json(['error' => ['message' => 'Following relationship already exists.']],
+                Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
         $follow = Follow::create($validated);
 
         return response()->json($follow, Response::HTTP_CREATED);
