@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chirp;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class ChirpController extends Controller
 {
@@ -32,5 +33,23 @@ class ChirpController extends Controller
             $users = $users->get();
         }
         return response()->json($users);
+    }
+
+    /**
+     * Create a new chirp instance after a valid registration.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    protected function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'author_id' => ['required', 'string', 'exists:users,id'],
+            'content' => ['required', 'string', 'max:280']
+        ]);
+
+        $chirp = Chirp::create($validated);
+
+        return response()->json($chirp, Response::HTTP_CREATED);
     }
 }
