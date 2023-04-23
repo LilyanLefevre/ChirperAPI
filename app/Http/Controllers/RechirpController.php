@@ -52,4 +52,17 @@ class RechirpController extends Controller
 
         return response()->json($rechirp, Response::HTTP_CREATED);
     }
+
+    /**
+     * Destroy a rechirp.
+     *
+     * @param Rechirp $rechirp
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function destroy(Rechirp $rechirp, Request $request)
+    {
+        return response()->json(null, $rechirp->delete() ?
+            Response::HTTP_NO_CONTENT : Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
 }

@@ -52,4 +52,17 @@ class ChirpLikeController extends Controller
 
         return response()->json($chirp_like, Response::HTTP_CREATED);
     }
+
+    /**
+     * Destroy a chirp like.
+     *
+     * @param ChirpLike $chirp_like
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function destroy(ChirpLike $chirp_like, Request $request)
+    {
+        return response()->json(null, $chirp_like->delete() ?
+            Response::HTTP_NO_CONTENT : Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
 }
