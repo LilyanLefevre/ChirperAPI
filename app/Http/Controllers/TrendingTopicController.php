@@ -63,6 +63,6 @@ class TrendingTopicController extends Controller
     public function destroy(TrendingTopic $trending_topic, Request $request)
     {
         return response()->json(null, $trending_topic->delete() ?
-            Response::HTTP_NO_CONTENT : Response::HTTP_INTERNAL_SERVER_ERROR);
+            Response::HTTP_OK : Response::HTTP_NOT_FOUND);
     }
 }

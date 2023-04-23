@@ -63,6 +63,6 @@ class ChirpController extends Controller
     public function destroy(Chirp $chirp, Request $request)
     {
         return response()->json(null, $chirp->delete() ?
-            Response::HTTP_NO_CONTENT : Response::HTTP_INTERNAL_SERVER_ERROR);
+            Response::HTTP_OK : Response::HTTP_NOT_FOUND);
     }
 }

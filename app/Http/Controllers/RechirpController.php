@@ -63,6 +63,6 @@ class RechirpController extends Controller
     public function destroy(Rechirp $rechirp, Request $request)
     {
         return response()->json(null, $rechirp->delete() ?
-            Response::HTTP_NO_CONTENT : Response::HTTP_INTERNAL_SERVER_ERROR);
+            Response::HTTP_OK : Response::HTTP_NOT_FOUND);
     }
 }
