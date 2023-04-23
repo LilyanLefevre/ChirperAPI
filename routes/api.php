@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChirpController;
 use App\Http\Controllers\ChirpLikeController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\RechirpController;
 use App\Http\Controllers\TrendingTopicController;
 use App\Http\Controllers\UserController;
@@ -29,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('rechirps', RechirpController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
         Route::apiResource('chirp_likes', ChirpLikeController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
         Route::apiResource('trending_topics', TrendingTopicController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
+        Route::apiResource('follows', FollowController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
     });
 });
 
