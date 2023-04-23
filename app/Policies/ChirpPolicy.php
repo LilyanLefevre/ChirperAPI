@@ -13,7 +13,7 @@ class ChirpPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -21,7 +21,7 @@ class ChirpPolicy
      */
     public function view(User $user, Chirp $chirp): bool
     {
-        return true;
+        return $chirp->author()->is_private() || $chirp->author()->id == $user->id;
     }
 
     /**
@@ -33,33 +33,9 @@ class ChirpPolicy
     }
 
     /**
-     * Determine whether the user can update the model.
-     */
-    public function update(User $user, Chirp $chirp): bool
-    {
-        return true;
-    }
-
-    /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user, Chirp $chirp): bool
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Chirp $chirp): bool
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Chirp $chirp): bool
     {
         return true;
     }
