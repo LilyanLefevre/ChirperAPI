@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TrendingTopic;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class TrendingTopicController extends Controller
 {
@@ -32,5 +33,23 @@ class TrendingTopicController extends Controller
             $users = $users->get();
         }
         return response()->json($users);
+    }
+
+    /**
+     * Create a new chirp like instance after a valid registration.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    protected function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'category' => ['required', 'string', 'max:255']
+        ]);
+
+        $trending_topic = TrendingTopic::create($validated);
+
+        return response()->json($trending_topic, Response::HTTP_CREATED);
     }
 }

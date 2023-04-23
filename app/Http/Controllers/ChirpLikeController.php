@@ -48,8 +48,8 @@ class ChirpLikeController extends Controller
             'user_id' => ['required', 'string', 'exists:users,id']
         ]);
 
-        $chirp = ChirpLike::create($validated);
+        $chirp_like = ChirpLike::create($validated);
 
-        return response()->json($chirp, Response::HTTP_CREATED);
+        return response()->json($chirp_like, Response::HTTP_CREATED);
     }
 }

@@ -48,8 +48,8 @@ class RechirpController extends Controller
             'user_id' => ['required', 'string', 'exists:users,id']
         ]);
 
-        $chirp = Rechirp::create($validated);
+        $rechirp = Rechirp::create($validated);
 
-        return response()->json($chirp, Response::HTTP_CREATED);
+        return response()->json($rechirp, Response::HTTP_CREATED);
     }
 }
