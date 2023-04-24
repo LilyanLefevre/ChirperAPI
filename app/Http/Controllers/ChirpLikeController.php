@@ -36,6 +36,18 @@ class ChirpLikeController extends Controller
     }
 
     /**
+     * Show a chirp like.
+     *
+     * @param ChirpLike $chirp
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function show(ChirpLike $chirp_like, Request $request)
+    {
+        return response()->json($chirp_like);
+    }
+
+    /**
      * Create a new chirp like instance after a valid registration.
      *
      * @param Request $request

@@ -58,6 +58,18 @@ class UserController extends Controller
         return response()->json($user, Response::HTTP_CREATED);
     }
 
+    /**
+     * Show a user.
+     *
+     * @param User $user
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function show(User $user, Request $request)
+    {
+        return response()->json($user);
+    }
+
     public function update(Request $request)
     {
         $request->validate([

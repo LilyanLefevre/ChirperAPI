@@ -54,6 +54,18 @@ class ChirpController extends Controller
     }
 
     /**
+     * Show a chirp.
+     *
+     * @param Chirp $chirp
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function show(Chirp $chirp, Request $request)
+    {
+        return response()->json($chirp);
+    }
+
+    /**
      * Destroy a chirp.
      *
      * @param Chirp $chirp

@@ -54,6 +54,18 @@ class RechirpController extends Controller
     }
 
     /**
+     * Show a rechirp.
+     *
+     * @param Rechirp $rechirp
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function show(Rechirp $rechirp, Request $request)
+    {
+        return response()->json($rechirp);
+    }
+
+    /**
      * Destroy a rechirp.
      *
      * @param Rechirp $rechirp

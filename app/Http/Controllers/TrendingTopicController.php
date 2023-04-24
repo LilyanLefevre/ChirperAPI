@@ -54,6 +54,18 @@ class TrendingTopicController extends Controller
     }
 
     /**
+     * Show a trending topic.
+     *
+     * @param TrendingTopic $trending_topic
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function show(TrendingTopic $trending_topic, Request $request)
+    {
+        return response()->json($trending_topic);
+    }
+
+    /**
      * Destroy a trending topic.
      *
      * @param TrendingTopic $trending_topic

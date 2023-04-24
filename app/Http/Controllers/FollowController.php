@@ -57,6 +57,18 @@ class FollowController extends Controller
     }
 
     /**
+     * Show a follow.
+     *
+     * @param Follow $follow
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function show(Follow $follow, Request $request)
+    {
+        return response()->json($follow);
+    }
+
+    /**
      * Destroy a chirp like.
      *
      * @param Follow $follow
