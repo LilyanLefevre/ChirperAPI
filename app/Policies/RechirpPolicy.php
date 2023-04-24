@@ -13,7 +13,7 @@ class RechirpPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -21,7 +21,9 @@ class RechirpPolicy
      */
     public function view(User $user, Rechirp $rechirps): bool
     {
-        return true;
+        $chirp = $rechirps->chirp()->first();
+        $author = $chirp->author()->first();
+        return $author->is_visible_for($user);
     }
 
     /**

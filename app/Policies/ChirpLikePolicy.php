@@ -13,7 +13,7 @@ class ChirpLikePolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -21,7 +21,9 @@ class ChirpLikePolicy
      */
     public function view(User $user, ChirpLike $likes): bool
     {
-        return true;
+        $chirp = $likes->chirp()->first();
+        $author = $chirp->author()->first();
+        return $author->is_visible_for($user);
     }
 
     /**

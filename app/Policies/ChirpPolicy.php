@@ -21,7 +21,8 @@ class ChirpPolicy
      */
     public function view(User $user, Chirp $chirp): bool
     {
-        return $chirp->author()->is_private() || $chirp->author()->id == $user->id;
+        $author = $chirp->author()->first();
+        return $author->is_visible_for($user);
     }
 
     /**

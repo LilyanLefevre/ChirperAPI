@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -55,5 +54,20 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function is_visible_for(User $user): bool{
+        if($this->private_account){
+            if($user->id == $this->id){
+                return true;
+            }
+            $follow = Follow::query()
+                ->where('follower_id', '=', $user->id)
+                ->where('followed_id', '=', $this->id)
+                ->first();
+
+            return !empty($follow);
+        }
+        return true;
     }
 }

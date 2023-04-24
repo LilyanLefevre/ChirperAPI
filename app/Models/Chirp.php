@@ -21,7 +21,7 @@ class Chirp extends Model
     protected $fillable = ['author_id', 'content'];
 
     public function author(): HasOne{
-        return $this->hasOne(User::class, 'author_id');
+        return $this->hasOne(User::class, 'id', 'author_id');
     }
 
     public function likes(): HasMany{
@@ -30,9 +30,5 @@ class Chirp extends Model
 
     public function rechirps(): HasMany{
         return $this->hasMany(Rechirp::class, 'id', 'chirp_id');
-    }
-
-    public function is_private(): bool{
-        return $this->private_account;
     }
 }

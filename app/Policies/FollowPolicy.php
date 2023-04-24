@@ -13,7 +13,7 @@ class FollowPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -21,7 +21,9 @@ class FollowPolicy
      */
     public function view(User $user, Follow $follow): bool
     {
-        return true;
+        $follower = $follow->follower()->first();
+        $followed = $follow->followed()->first();
+        return $follower->is_visible_for($user) || $followed->is_visible_for($user);
     }
 
     /**
@@ -37,7 +39,7 @@ class FollowPolicy
      */
     public function update(User $user, Follow $follow): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -45,22 +47,6 @@ class FollowPolicy
      */
     public function delete(User $user, Follow $follow): bool
     {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, Follow $follow): bool
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, Follow $follow): bool
-    {
-        return true;
+        return $follow->follower_id == $user->id || $follow->followed_id == $user->id;
     }
 }

@@ -9,6 +9,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FollowController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Follow::class, 'follow');
+    }
+
     public function index(Request $request): JsonResponse
     {
         $validated = $request->validate([
@@ -47,8 +52,8 @@ class FollowController extends Controller
             ->where('followed_id', '=', $validated['followed_id'])->first();
 
         if(!empty($existing_follow)){
-            return response()->json(['error' => ['message' => 'Following relationship already exists.']],
-                Response::HTTP_UNPROCESSABLE_ENTITY);
+            return response()->json($existing_follow,
+                Response::HTTP_OK);
         }
 
         $follow = Follow::create($validated);

@@ -12,15 +12,15 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, User $trendingTopic): bool
+    public function view(User $user, User $user_to_view): bool
     {
-        return true;
+        return $user_to_view->is_visible_for($user);
     }
 
     /**
@@ -28,38 +28,22 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, User $trendingTopic): bool
+    public function update(User $user, User $user_to_update): bool
     {
-        return true;
+        return $user->id == $user_to_update->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, User $trendingTopic): bool
+    public function delete(User $user, User $user_to_delete): bool
     {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, User $trendingTopic): bool
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, User $trendingTopic): bool
-    {
-        return true;
+        return $user->id == $user_to_delete->id;
     }
 }

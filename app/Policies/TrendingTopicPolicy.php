@@ -29,7 +29,7 @@ class TrendingTopicPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -37,7 +37,7 @@ class TrendingTopicPolicy
      */
     public function update(User $user, TrendingTopic $trendingTopic): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -45,22 +45,6 @@ class TrendingTopicPolicy
      */
     public function delete(User $user, TrendingTopic $trendingTopic): bool
     {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     */
-    public function restore(User $user, TrendingTopic $trendingTopic): bool
-    {
-        return true;
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     */
-    public function forceDelete(User $user, TrendingTopic $trendingTopic): bool
-    {
-        return true;
+        return false;
     }
 }
